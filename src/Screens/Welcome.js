@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import PersonIcon from "@mui/icons-material/Person";
 import { Link } from "react-router-dom";
@@ -9,11 +9,22 @@ import Typewriter from "typewriter-effect";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { height } from "@mui/system";
 import styled from "@emotion/styled";
+import Exercises from "./Exercises";
+const API_KEY = "f0d80579f3204d7297bc576470ecbc62";
+const url = "https://newsapi.org/v2/everything?q=";
 
 const Welcome = () => {
   
-
-  
+const [exerciseArticles, setExerciseArticles] = useState([]);
+  useEffect(() => {
+    fetchNews("Exercise", 3); // Fetch 3 exercise articles
+  }, []);
+  async function fetchNews(query, count) {
+    const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
+    const data = await res.json();
+    const selectedArticles = data.articles.slice(0, count);
+    setExerciseArticles(selectedArticles);
+  }
 
   return (
     <div>
@@ -26,272 +37,205 @@ const Welcome = () => {
             <div className="space-x-4 ml-4 ">
               <Link
                 to={"/Features"}
-                
-              class="text-black text-xl p-1 ml-10 rounded-xl"
-              > 
-              Diets
-               
-               
-            </Link>
-              
-            <Link
-              to={"/Exercises"}
-              class="text-black text-xl p-1 rounded-xl"
-            >
-              Exercises
-            </Link>
-            <Link
-              to={"/Blogs"}
-              class="text-black text-xl p-1 rounded-xl"
-            >
-              Blogs
-            </Link>
-            <Link
-              to={"/AboutUs"}
-              class="text-black text-xl p-1 rounded-xl"
-            >
-              About Us
-            </Link>
-          </div>
-          <div class="space-x-4">
-            <Link
-              to={"/Login"}
-              class="text-black text-xl p-1 rounded-xl"
-            >
-              <PersonIcon /> Login
-            </Link>
-            <Link
-              to={"/UserSignUp"}
-              class="text-black text-xl p-1 rounded-xl"
-            >
-              <AccountBoxIcon /> SignUp
-            </Link>
-          </div>
-      </div>
-    </nav>
-      </div >
-  <div class=" bg-cover h-screen bg-green-100 flex flex-row justify-around p-8">
-    <div className="mt-52">
-      {" "}
-      <h1 className="text-5xl font-bold">
-        <Typewriter
-          options={{
-            strings: [
-              "Be Healthy <br/> for life!",
-              "Be Healthy <br/> for life!",
-            ],
-            autoStart: true,
-            loop: true,
-            delay: 200,
-          }}
-        />
-      </h1>
-      <br />
-      <p className="font-semibold text-xl ">
-        Your weight loss, diet, and <br /> nutrition assistant
-      </p>
-    </div>
+                class="text-black text-xl p-1 ml-10 rounded-xl"
+              >
+                Diets
+              </Link>
 
-    <div className="mt-10">
-      <img
-        className="rounded-lg drop-shadow-md"
-        height={500}
-        width={550}
-        src={require("../Data/Home-removebg-preview.png")}
-      />
-    </div>
-  </div>
-{/* <hr className='mt-1' style={{ background: 'black', height: '3px', }} /> */ }
-{/* -------------------------------------------Block------------------------------------------------- */ }
-      
-      <PageWrapper>
-      <div className=" mt-14 mb-14">
-        <h1 className="text-center text-3xl font-bold"> What Would You Get </h1>
-      </div>
-      <div className="mt-8 pt-2 pb-2">
-        <div className="flex flex-row space-x-52 mt-32 ml-20 mr-20 mb-20">
-          <img
-            className="rounded-lg"
-            src={require("../Data/first.png")}
-            height={"400px"}
-            width={"400px"}
-          />
-          <div className="text-2xl mt-16">
-            {" "}
-            <strong>Personlized Meal plan</strong> <br />{" "}
-            <p>
-              Сontains ingredients, step-by-step preparation, extra recipes to
-              swap and nutritional value
-            </p>
+              <Link to={"/Exercises"} class="text-black text-xl p-1 rounded-xl">
+                Exercises
+              </Link>
+              <Link to={"/Blogs"} class="text-black text-xl p-1 rounded-xl">
+                Blogs
+              </Link>
+              <Link to={"/AboutUs"} class="text-black text-xl p-1 rounded-xl">
+                About Us
+              </Link>
+            </div>
+            <div class="space-x-4">
+              <Link to={"/Login"} class="text-black text-xl p-1 rounded-xl">
+                <PersonIcon /> Login
+              </Link>
+              <Link
+                to={"/UserSignUp"}
+                class="text-black text-xl p-1 rounded-xl"
+              >
+                <AccountBoxIcon /> SignUp
+              </Link>
+            </div>
           </div>
-        </div>
+        </nav>
       </div>
-      <div className="pb-1">
-        <div className=" flex flex-row space-x-52 mt-15 ml-20 mr-20 mb-20 p-10">
-          <h1 className="text-2xl mt-16">
-            <strong>Fat-burning workouts</strong> <br /> <p>Tell us about yourself so that we can
-            create a personalized meal plan tailored to your needs, preferences,
-            and goals.</p>
-          </h1>
-          <img
-            className="rounded-lg"
-            src={require("../Data/second.png")}
-            height={"400px"}
-            width={"400px"}
-          />
-        </div>
-      </div>
-      <br />
-      <br />
-      <br />
-      {/* -------------------------------------------Block------------------------------------------------- */}
-      <div className=" pt-2 pb-2">
-        <div className="flex flex-row space-x-52 ml-20 mr-20 mb-20">
-          <img
-            className="rounded-lg"
-            src={require("../Data/third.png")}
-            height={"400px"}
-            width={"400px"}
-          />
-          <h1 className="text-2xl mt-8">
-            <strong>Professional support</strong> <br />
-            <br /> <p>Don’t hesitate to ask your question. We are here to help you
-            solve any kind of difficulty 24/7. </p>
-          </h1>
-        </div>
-      </div>
-      <div className="pb-1">
-        <div className=" flex flex-row space-x-52 mt-10 ml-20 mr-20 mb-20">
-          <h1 className="text-2xl mt-16">
-            <strong>Healthy lifestyle basics</strong> <br />
-            <br /> <p>Educate yourself on how to develop a healthier lifestyle.
-            Know more about eating, sleep, stress etc </p>
-          </h1>
-          <img
-            className="rounded-lg mt-10"
-            src={require("../Data/fourth.png")}
-            height={"400px"}
-            width={"400px"}
-          />
-        </div>
-      </div>
-      </PageWrapper>
-      
-      <br />
-{/* -------------------------------------------Recipie------------------------------------------------- */ }
-      <hr />
-      <hr />
-      <hr />
-      <br />
-      <br />
-      <PageWrapper>
-      <h1 className="text-3xl font-bold ml-20">Recipies</h1>
-      <div className="m-10">
-        <div className="flex">
-          <Cardd
-          title={title} 
-          description={description} 
-          imageUrl={require('../Data/recipe3.jpg')}
-          />
-          <Cardd 
-          title={title + "2"} 
-          description={description} 
-          imageUrl={require('../Data/recipe2.jpg')} 
-
-          />
-          <Cardd 
-          title={title + "3"} 
-          description={description} 
-          imageUrl={require('../Data/recipe3.jpg')} 
-
-          />
-         
-          <br />
-        </div>
-        <Link
-          className="flex justify-end mt-20 text-sky-600 font-bold  mr-5"
-          to={"/Features"}
-        >
+      <div class=" bg-cover h-screen bg-green-100 flex flex-row justify-around p-8">
+        <div className="mt-52">
           {" "}
-          All Recipie <ArrowForwardIcon />
-        </Link>
+          <h1 className="text-5xl font-bold">
+            <Typewriter
+              options={{
+                strings: [
+                  "Be Healthy <br/> for life!",
+                  "Be Healthy <br/> for life!",
+                ],
+                autoStart: true,
+                loop: true,
+                delay: 200,
+              }}
+            />
+          </h1>
+          <br />
+          <p className="font-semibold text-xl ">
+            Your weight loss, diet, and <br /> nutrition assistant
+          </p>
+        </div>
+
+        <div className="mt-10">
+          <img
+            className="rounded-lg drop-shadow-md"
+            height={500}
+            width={550}
+            src={require("../Data/Home-removebg-preview.png")}
+          />
+        </div>
       </div>
+      {/* <hr className='mt-1' style={{ background: 'black', height: '3px', }} /> */}
+      {/* -------------------------------------------Block------------------------------------------------- */}
+      <PageWrapper>
+        <div className=" mt-14 mb-14">
+          <h1 className="text-center text-3xl font-bold">
+            {" "}
+            What Would You Get{" "}
+          </h1>
+        </div>
+        <div className="mt-8 pt-2 pb-2">
+          <div className="flex flex-row space-x-52 mt-32 ml-20 mr-20 mb-20">
+            <img
+              className="rounded-lg"
+              src={require("../Data/first.png")}
+              height={"400px"}
+              width={"400px"}
+            />
+            <div className="text-2xl mt-16">
+              {" "}
+              <strong>Personlized Meal plan</strong> <br />{" "}
+              <p>
+                Сontains ingredients, step-by-step preparation, extra recipes to
+                swap and nutritional value
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="pb-1">
+          <div className=" flex flex-row space-x-52 mt-15 ml-20 mr-20 mb-20 p-10">
+            <h1 className="text-2xl mt-16">
+              <strong>Fat-burning workouts</strong> <br />{" "}
+              <p>
+                Tell us about yourself so that we can create a personalized meal
+                plan tailored to your needs, preferences, and goals.
+              </p>
+            </h1>
+            <img
+              className="rounded-lg"
+              src={require("../Data/second.png")}
+              height={"400px"}
+              width={"400px"}
+            />
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        {/* -------------------------------------------Block------------------------------------------------- */}
+        <div className=" pt-2 pb-2">
+          <div className="flex flex-row space-x-52 ml-20 mr-20 mb-20">
+            <img
+              className="rounded-lg"
+              src={require("../Data/third.png")}
+              height={"400px"}
+              width={"400px"}
+            />
+            <h1 className="text-2xl mt-8">
+              <strong>Professional support</strong> <br />
+              <br />{" "}
+              <p>
+                Don’t hesitate to ask your question. We are here to help you
+                solve any kind of difficulty 24/7.{" "}
+              </p>
+            </h1>
+          </div>
+        </div>
+        <div className="pb-1">
+          <div className=" flex flex-row space-x-52 mt-10 ml-20 mr-20 mb-20">
+            <h1 className="text-2xl mt-16">
+              <strong>Healthy lifestyle basics</strong> <br />
+              <br />{" "}
+              <p>
+                Educate yourself on how to develop a healthier lifestyle. Know
+                more about eating, sleep, stress etc{" "}
+              </p>
+            </h1>
+            <img
+              className="rounded-lg mt-10"
+              src={require("../Data/fourth.png")}
+              height={"400px"}
+              width={"400px"}
+            />
+          </div>
+        </div>
+      </PageWrapper>
+      <br />
+      {/* -------------------------------------------Recipie------------------------------------------------- */}
+      <hr />
+      <hr />
+      <hr />
+      <br />
+      <br />
+      <PageWrapper>
+        <h1 className="text-3xl font-bold ml-20">Recipies</h1>
+        
+          <Link
+            className="flex justify-end mt-20 text-sky-600 font-bold  mr-5"
+            to={"/Features"}
+          >
+            {" "}
+            All Recipie <ArrowForwardIcon />
+          </Link>
+        
       </PageWrapper>
       <br />
       <br />
-{/* -------------------------------------------Exersise------------------------------------------------- */ }
-<PageWrapper>
-  <h1 className="text-3xl font-bold ml-20">Exercises</h1>
-  <div className="m-10 pt-4 rounded-lg drop-shadow-2xl">
-    <div className="flex">
-
-      <Cardd
-        title={'Exercise 1'}
-        description={description2}
-        imageUrl={require('../Data/exercise3.jpg')}
-      />
-      <Cardd
-        title={'Exercise 2'}
-        description={description2}
-        imageUrl={require('../Data/exercise2.jpg')}
-      />
-      <Cardd
-        title={'Exercise 3'}
-        description={description2}
-        imageUrl={require('../Data/exercise3.jpg')}
-      />
-      <br />
-    </div>
-    <Link
-      className="flex justify-end mt-20 text-sky-600 font-bold  mr-5 "
-      to={"/Exercise"}
-    >
-      All Exercise <ArrowForwardIcon />
-    </Link>
-  </div>
-</PageWrapper>
-{/* -------------------------------------------Blogs------------------------------------------------- */ }
+      {/* -------------------------------------------Exersise------------------------------------------------- */}
       <PageWrapper>
-      <h1 className="text-3xl font-bold ml-20 mt-32">
-        Learn more about healthy lifestyle and nutrition
-      </h1>
-     
-        <div className="m-10 pt-4 rounded-lg drop-shadow-2xl">
-          <div className="flex flex-nowrap">
-
-            <Cardd
-              title={'15 Make-Ahead Breakfasts under 300 Calories'}
-              description={description}
-              imageUrl={require('../Data/blog1.jpg')}
-            />
-            <Cardd
-              title={'The Problem With Cheat Days'}
-              description={description2}
-              imageUrl={require('../Data/blog2.jpg')}
-            />
-            <Cardd
-              title={'Essential Guide To Getting Moving'}
-              description={description2}
-              imageUrl={require('../Data/blog3.jpg')}
-            />
-           
+        <h1 className="text-3xl font-bold ml-20">Exercises</h1>
+        
+            {/* <Exercises exerciseArticles={exerciseArticles} /> */}
             
-            <br />
-          </div>
+          <Link
+            className="flex justify-end mt-20 text-sky-600 font-bold  mr-5 "
+            to={"/Exercise"}
+          >
+            All Exercise <ArrowForwardIcon />
+          </Link>
+        
+      </PageWrapper>
+      {/* -------------------------------------------Blogs------------------------------------------------- */}
+      <PageWrapper>
+        <h1 className="text-3xl font-bold ml-20 mt-32">
+          Learn more about healthy lifestyle and nutrition
+        </h1>
+
+       
           <Link
             className="flex justify-end mt-20 text-sky-600 font-bold  mr-5 "
             to={"/Blogs"}
           >
             All Blogs <ArrowForwardIcon />
           </Link>
-        </div>
       </PageWrapper>
       <hr />
       <hr />
       <hr />
       <br />
       <br /> <br />
-      
       <div className="bg-green-400 p-20 mt-28 mb-28 ml-40 mr-40 rounded-2xl">
         <h1 className="text-center font-bold text-xl">
           {" "}
@@ -304,8 +248,7 @@ const Welcome = () => {
           Start your journey now
         </h1>
       </div>
-      
-    </div >
+    </div>
   );
 };
 
