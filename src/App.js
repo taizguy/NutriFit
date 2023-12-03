@@ -21,6 +21,7 @@ import { UserAuthContextProvider } from './context/UserAuthContext';
 import { SleepTimeNo, ProteinNo, PhysicalSchedulNo, JobScheduleNo, HealthyFatsNo, FoodElergiesNo, DietTypeNo, DailyMealNo, ActivityLevelNo, Dqs2, Sqs2, JobType2 } from './import/importNo'
 import { SleepTime_yes, Protein_yes, PhysicalSchedul_yes, JobType_yes, JobSchedule_yes, HealthyFats_yes, FoodElergies_yes, DietType_yes, DailyMeal_yes, ActivityLevel_yes } from './import/importYes'
 import Exercise from './Screens/Profiling/2/Ex-yes/Exercise';
+// import Exercisesdb from './Screens/Exercisesdb';
 import EatBeforeWorkout from './Screens/Profiling/2/Ex-yes/EatBeforeWorkout';
 import WorkOutFrequency from './Screens/Profiling/2/Ex-yes//WorkOutFrequency';
 import PlaySport from './Screens/Profiling/2/Ex-yes//PlaySport';
@@ -67,6 +68,7 @@ function App() {
         <Route path="/recipe/:name" element={<Recipe />} />
         <Route path='/Blogs' element={<Blogs />} />
         <Route path='/Exercises' element={<Exercises />} />
+        {/* <Route path='/Exercisesdb' element={<Exercisesdb />} /> */}
 
 
 

@@ -211,7 +211,7 @@ const [exerciseArticles, setExerciseArticles] = useState([]);
             
           <Link
             className="flex justify-end mt-20 text-sky-600 font-bold  mr-5 "
-            to={"/Exercise"}
+            to={"/Exercises"}
           >
             All Exercise <ArrowForwardIcon />
           </Link>
