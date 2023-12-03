@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 
-
+* {
+    font-family: "Gilroy";
+}
 
 h4 {
     font-size: 1rem;

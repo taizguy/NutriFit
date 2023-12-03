@@ -26,7 +26,7 @@ const Login = () => {
     setError("");
     try {
       await logIn(email, password);
-      navigate("/Dashboard");
+      navigate("/Exercises");
     } catch (err) {
       setError(err.message);
     }
@@ -92,8 +92,6 @@ const Login = () => {
 
 
           </form>
-
-
 
         </div>
       </div>
