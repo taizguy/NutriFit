@@ -182,7 +182,7 @@ const Recipe = () => {
             </Table>
           )}
 
-          {/* {activeTab === "macros" && details.nutrition &&(
+          {activeTab === "macros" && details.nutrition &&(
             <Table>
               <thead>
                 <tr>
@@ -204,7 +204,7 @@ const Recipe = () => {
             </Table>
           )  (
             
-          )} */}
+          )}
 
 
 
