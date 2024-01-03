@@ -61,7 +61,7 @@ const UserSignUP = () => {
     }
   
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/signup", user);
+      const response = await axios.post("https://nutrifit-lyl7.onrender.com/api/auth/signup", user);
       if (response.data.status === 200) {
       toast.success(response.data.statusMessage);
       Cookies.set("userInfo", JSON.stringify(response.data.data));

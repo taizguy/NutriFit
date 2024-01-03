@@ -45,7 +45,7 @@ function Food() {
         mealtime,
       };
       // Make a POST request to the specified API endpoint
-      const response = await axios.post('http://localhost:5000/api/food/add', requestBody);
+      const response = await axios.post('https://nutrifit-lyl7.onrender.com/api/food/add', requestBody);
       if (response.data.status === 200) {
         toast.success(response.data.statusMessage);
    
