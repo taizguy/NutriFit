@@ -7,7 +7,10 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { useUserAuth } from "../context/UserAuthContext";
 import { Form, Alert } from "react-bootstrap";
-
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { ToastContainer } from "react-toastify";
+import {  toast } from "../Component/toastr/toaster.tsx";
 
 
 
@@ -24,13 +27,28 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+  
     try {
-      await logIn(email, password);
-      navigate("/Dashboard");
+      const response = await axios.post("http://localhost:5000/api/auth/signin", {
+        email,
+        password,
+      });
+  console.log("object",response)
+      if (response.data.status === 200) {
+        toast.success(response.data.statusMessage);
+        Cookies.set("userInfo", JSON.stringify(response.data.data));
+        setTimeout(() => {
+          navigate("/Dashboard");
+        }, 3000);
+        }
+        else {
+          toast.error(response.data.statusMessage);
+        }
     } catch (err) {
       setError(err.message);
     }
   };
+  
 
   
 
@@ -38,6 +56,7 @@ const Login = () => {
 
   return (
     <div>
+      <ToastContainer/>
       <div className="flex justify-center  w-full mt-10">
 
         <div class="w-full max-w-lg">

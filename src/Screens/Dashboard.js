@@ -3,29 +3,41 @@ import Exercise from './Profiling/2/Ex-yes/Exercise';
 import FacebookIcon from "@mui/icons-material/Facebook";
 import MonitorWeightIcon from "@mui/icons-material/MonitorWeight";
 import { green, red } from '@mui/material/colors';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import Typewriter from "typewriter-effect";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import PersonIcon from "@mui/icons-material/Person";
+import Cookies from 'js-cookie';
 
 const Dashboard = () => {
+  let user = Cookies.get("userInfo");
+
+  const userInfo = user ? JSON.parse(user) : null;
+  console.log(userInfo,"----")
   const [totalCalories, setTotalCalories] = useState(2400);
   const [caloriesTaken, setCaloriesTaken] = useState(500)
   const [caloriesBurned, setCaloriesBurned] = useState(50)
+  const navigate=useNavigate()
   const handleAddExercise = () => {
-    console.log('Adding exercise...');
+  navigate("/AddExercise")
   };
-
   const handleAddFood = () => {
     // For demonstration, increment total calories by 100 for each food added
     setTotalCalories((prevTotalCalories) => prevTotalCalories + 100);
+navigate("/food")
   };
   
 
   // Calculate progress based on total calories (example: 2000 calories as goal)
   const progress = (caloriesTaken / totalCalories) * 100;
-
+  const handleSignOut = () => {
+    // Remove the 'userInfo' cookie
+    Cookies.remove('userInfo');
+    
+    // You can also redirect the user to the login page or perform any other necessary actions
+    navigate('/UserSignUp');
+  };
   return (
     <>
       <div>
@@ -53,12 +65,12 @@ const Dashboard = () => {
             </div>
             <div class="space-x-4">
              
-              <Link
-                to={"/UserSignUp"}
-                class="text-black text-xl  p-1 rounded-xl"
-              >
-                <AccountBoxIcon /> Sign Out
-              </Link>
+            <button
+          onClick={handleSignOut}
+          class="text-black text-xl p-1 rounded-xl"
+        >
+          <AccountBoxIcon /> Sign Out
+        </button>
             </div>
           </div>
         </nav>

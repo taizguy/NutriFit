@@ -39,6 +39,8 @@ import {
 } from './import/import'
 import JobType from './Screens/Profiling/Weight/JobType';
 import Sqs_yes from './Screens/Profiling/2/Ex-yes/Sqs_yes';
+import Food from './Screens/Food';
+import AddExercise from './Screens/AddExercise';
 
 
 
@@ -69,10 +71,12 @@ function App() {
         <Route path="/recipe/:name" element={<Recipe />} />
         <Route path='/Blogs' element={<Blogs />} />
         <Route path='/Exercises' element={<Exercises />} />
+        <Route path='/AddExercise' element={<AddExercise />} />
         <Route path='/Dashboard' element={<Dashboard />} />
           
         {/* <Route path='/Exercisesdb' element={<Exercisesdb />} /> */}
 
+        <Route path='/food' element={<Food/>} />
 
 
 
