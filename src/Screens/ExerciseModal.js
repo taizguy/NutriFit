@@ -31,7 +31,7 @@ const ExerciseModal = ({ exercise, closeModal }) => {
       <button onClick={handleSave}>Save</button>
       <button onClick={closeModal}>Close</button>
     </Modal>
-  );
+  )
 };
 
 export default ExerciseModal;
